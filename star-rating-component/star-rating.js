@@ -73,7 +73,7 @@ class StarRating {
 
         for (let i = 0; i < this.starCount; i++) {
             const starSpan = document.createElement('span');
-            starSpan.className = 'star-radio';
+            starSpan.className = 'star-slide';
 
             const clipId = `clip-${crypto.randomUUID()}`;
 

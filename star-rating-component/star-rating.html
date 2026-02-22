@@ -21,17 +21,17 @@
             outline: none;
         }
 
-        .star-radio {
+        .star-slide {
             display: inline-block;
             cursor: pointer;
             margin-right: 6px;
         }
 
-        .star-radio:last-child {
+        .star-slide:last-child {
             margin-right: 0;
         }
 
-        .star-radio:focus {
+        .star-slide:focus {
             outline: 2px solid #3b82f6;
             border-radius: 4px;
         }
@@ -71,9 +71,9 @@
         const starComponent = new StarRating('.star-rating-container', {
             starCount: 5,
             starSize: 100,
-            starColor: '#FFD700',
+            starColor: 'red',
             starBackgroundColor: '#d4d4d8',
-            precision: .2,
+            precision: .5,
             rating: 1,
             readonly: false
         });
