@@ -35,6 +35,7 @@
             outline: 2px solid #3b82f6;
             border-radius: 4px;
         }
+
         .rating-popup {
             position: absolute;
             background: #222;
@@ -48,6 +49,7 @@
             opacity: 0;
             transition: opacity 0.15s;
         }
+
         .rating-popup.visible {
             opacity: 1;
         }
@@ -59,21 +61,21 @@
     <div class="title">Star Rating Component</div>
 
     <div style="position: relative; display: inline-block;">
-        <div class="star-rating-container" role="radiogroup" aria-label="Star Rating"></div>
+        <div class="star-rating-container" role="slider" aria-label="Star Rating"></div>
         <div class="rating-popup" aria-live="polite" role="status" hidden></div>
     </div>
 
     <script src="star-rating.js"></script>
 
     <script>
-        new StarRating('.star-rating-container', {
+        const starComponent = new StarRating('.star-rating-container', {
             starCount: 5,
-            starSize: 80,
+            starSize: 100,
             starColor: '#FFD700',
             starBackgroundColor: '#d4d4d8',
-            precision: 0.5,
-            rating: 2.5,
-            readonly: true
+            precision: .2,
+            rating: 1,
+            readonly: false
         });
     </script>
 
