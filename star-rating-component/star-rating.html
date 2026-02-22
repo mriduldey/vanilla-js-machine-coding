@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Rating Component</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .star-rating-container {
+            display: inline-flex;
+            outline: none;
+        }
+
+        .star-radio {
+            display: inline-block;
+            cursor: pointer;
+            margin-right: 6px;
+        }
+
+        .star-radio:last-child {
+            margin-right: 0;
+        }
+
+        .star-radio:focus {
+            outline: 2px solid #3b82f6;
+            border-radius: 4px;
+        }
+        .rating-popup {
+            position: absolute;
+            background: #222;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 1rem;
+            pointer-events: none;
+            z-index: 1000;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+        .rating-popup.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="title">Star Rating Component</div>
+
+    <div style="position: relative; display: inline-block;">
+        <div class="star-rating-container" role="radiogroup" aria-label="Star Rating"></div>
+        <div class="rating-popup" aria-live="polite" role="status" hidden></div>
+    </div>
+
+    <script src="star-rating.js"></script>
+
+    <script>
+        new StarRating('.star-rating-container', {
+            starCount: 5,
+            starSize: 80,
+            starColor: '#FFD700',
+            starBackgroundColor: '#d4d4d8',
+            precision: 0.5,
+            rating: 2.5,
+            readonly: false
+        });
+    </script>
+
+</body>
+
+</html>
