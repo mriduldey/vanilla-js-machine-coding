@@ -47,7 +47,7 @@ function throttle(fn, wait, options = {}) {
   const { leading = true, trailing = true } = options;
 
   const invoke = () => {
-    lastCallTime = leading === false ? 0 : Date.now();
+    lastCallTime = leading ? Date.now() : 0;
     timer = null;
     fn.apply(lastThis, lastArgs);
     lastArgs = lastThis = null;
@@ -55,7 +55,7 @@ function throttle(fn, wait, options = {}) {
 
   const throttled = function (...args) {
     const now = Date.now();
-    if (!lastCallTime && leading === false) lastCallTime = now;
+    if (!lastCallTime && !leading) lastCallTime = now;
 
     const remaining = wait - (now - lastCallTime);
     lastArgs = args;
@@ -69,7 +69,7 @@ function throttle(fn, wait, options = {}) {
       lastCallTime = now;
       fn.apply(lastThis, lastArgs);
       lastArgs = lastThis = null;
-    } else if (!timer && trailing !== false) {
+    } else if (!timer && trailing) {
       timer = setTimeout(invoke, remaining);
     }
   };
