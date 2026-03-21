@@ -35,7 +35,7 @@ class ProgressController {
   static State = {
     IDLE: "IDLE",
     RUNNING: "RUNNING",
-    awd,
+    PAUSED: "PAUSED",
   };
 
   constructor({ onUpdate, onComplete } = {}) {
@@ -181,7 +181,7 @@ const controller = new ProgressController({
     console.log("Finished:", task.id);
     // Example: Add a new task automatically to keep the loop going
     controller.enqueue(Math.random() * 2000 + 500);
-  },
+  }
 });
 
 // 4. Add Tasks to the Queue
