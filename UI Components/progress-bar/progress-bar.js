@@ -138,8 +138,17 @@ class ProgressController {
     this.currentTask = null;
     this.state = ProgressController.State.IDLE;
 
+    // 1. Notify that the task is done
     this.onComplete(completedTask);
-    this._runNext();
+
+    // 2. Schedule the next task to run on the next microtask tick.
+    // This allows any synchronous enqueues inside onComplete to finish settling.
+    queueMicrotask(() => {
+      // Only run next if a recursive enqueue hasn't already started the engine
+      if (this.state === ProgressController.State.IDLE) {
+        this._runNext();
+      }
+    });
   }
 
   _stopCurrent() {
@@ -180,13 +189,14 @@ const controller = new ProgressController({
   onComplete: (task) => {
     console.log("Finished:", task.id);
     // Example: Add a new task automatically to keep the loop going
-    controller.enqueue(Math.random() * 2000 + 500);
-  }
+    controller.enqueue(Math.random() * 2000 + 500, "random-task-1");
+  },
 });
 
 // 4. Add Tasks to the Queue
 controller.enqueue(3000, "Initial-Task-1");
 controller.enqueue(1500, "Initial-Task-2");
+controller.enqueue(5000, "Initial-Task-3");
 
 // --- API Methods available for UI Buttons ---
 // controller.pause();
